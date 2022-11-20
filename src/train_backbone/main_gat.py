@@ -7,7 +7,7 @@ SELECT_DATA="dblp"
 NEIGHBOR_NUM=5
 SELECT_NUM=5
 AGG='mean'
-MODE='train'
+MODE='test'
 
 if __name__ == "__main__":
     os.environ['MASTER_ADDR'] = 'localhost'

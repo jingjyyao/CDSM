@@ -298,7 +298,7 @@ def test_single_process(model, args, mode):
 def test(local_rank, args, global_prefetch_step, end):
     utils.setuplogging()
     os.environ["RANK"] = str(local_rank)
-    utils.setup(local_rank, args.world_size)
+    setup(local_rank, args.world_size)
 
     device = torch.device("cuda", local_rank)
 
