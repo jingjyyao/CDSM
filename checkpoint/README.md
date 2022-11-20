@@ -1,0 +1,1 @@
+Download the checkpoint from xxx and put them under this directory.
