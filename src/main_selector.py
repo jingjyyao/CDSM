@@ -13,13 +13,12 @@ if __name__ == "__main__":
     os.environ['MASTER_PORT'] = '12356'
     args = parse_args()
     if SELECT_DATA=="dblp":
-        # args.train_data_path = '/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_graph_data/sample_train.tsv'
-        args.train_data_path = '/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_twoorder_neighbors/sample_train.tsv'
-        # args.valid_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_graph_data/valid.tsv'
-        args.valid_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_twoorder_neighbors/valid_50.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_graph_data/test.tsv'
-        args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_twoorder_neighbors/test_50.tsv'
-        args.load_ckpt_name = "./model/best/dblp/gat-best.pt"
+        # args.train_data_path = '../../data/dblp_twoorder_neighbors/sample_train.tsv'
+        args.train_data_path = '../../data/dblp_twoorder_neighbors/sample_train.tsv'
+        # args.valid_data_path='../../data/dblp_twoorder_neighbors/valid.tsv'
+        args.valid_data_path='../../data/dblp_twoorder_neighbors/valid_50.tsv'
+        # args.test_data_path='../../data/dblp_twoorder_neighbors/test.tsv'
+        args.test_data_path='../../data/dblp_twoorder_neighbors/test_50.tsv'
         args.block_size = 32
         args.schedule_step = (10000) * args.epochs
         args.save_steps = 1000
@@ -29,9 +28,9 @@ if __name__ == "__main__":
         args.valid_batch_size = 300
         args.test_batch_size = 300
     elif SELECT_DATA=="wiki":
-        args.train_data_path = '/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_oneorder_neighbors/sample_train.tsv'
-        args.valid_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_oneorder_neighbors/test.tsv'
-        args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_oneorder_neighbors/test.tsv'
+        args.train_data_path = '../../data/wikidata5m_oneorder_neighbors/sample_train.tsv'
+        args.valid_data_path='../../data/wikidata5m_oneorder_neighbors/test.tsv'
+        args.test_data_path='../../data/wikidata5m_oneorder_neighbors/test.tsv'
         args.block_size = 64
         args.schedule_step = (2*10**5) * args.epochs # 2200,00
         args.save_steps = 1000
@@ -41,9 +40,9 @@ if __name__ == "__main__":
         args.valid_batch_size = 300
         args.test_batch_size = 300
     elif SELECT_DATA=="product":
-        args.train_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/Graph_1206_small/sample_Train_shuf.tsv'
-        args.valid_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/Graph_1206_small/Valid_shuf.tsv'
-        args.test_data_path='./home/v-jingyao/projects/NeighborSelection/TopoGramFiles/Graph_1206_small/Test_shuf.tsv'
+        args.train_data_path='../../data/product_oneorder_neighbors/sample_Train_shuf.tsv'
+        args.valid_data_path='../../data/product_oneorder_neighbors/Valid_shuf.tsv'
+        args.test_data_path='.../../data/product_oneorder_neighbors/Test_shuf.tsv'
         args.block_size = 32
         args.schedule_step = (30000) * args.epochs
         args.save_steps = 200 #5*10 ** 4
@@ -53,8 +52,8 @@ if __name__ == "__main__":
         args.valid_batch_size = 300
         args.test_batch_size = 300
 
-    # args.model_dir='./model'
-    # args.enable_gpu=True
+    args.model_dir='../../checkpoint'
+    args.enable_gpu=True
 
     args.warmup_lr=False
     args.savename='selector-'+SELECT_DATA+'-'+EVALUATOR_TYPE+'-onestep-similarity'
@@ -67,8 +66,8 @@ if __name__ == "__main__":
     args.return_last_station_emb=False
     args.mapping_graph=False
     args.model_type='selector'
-    args.model_name_or_path="/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/Turing/base-uncased.bin"
-    args.config_name="/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/Turing/unilm2-base-uncased-config.json"
+    args.model_name_or_path="../../data/Turing/base-uncased.bin"
+    args.config_name="../../data/Turing/unilm2-base-uncased-config.json"
     args.pretrain_lr=1e-5
     args.fp16=True
     args.neighbor_mask=False
@@ -78,9 +77,9 @@ if __name__ == "__main__":
     args.positive_num=5
     args.selector_task=SELECTOR_TASK
     args.evaluator_type=EVALUATOR_TYPE
-    args.load_ckpt_name = "/home/v-jingyao/projects/NeighborSelection-Final/checkpoint/{}-{}-best.pt".format(EVALUATOR_TYPE, SELECT_DATA)
+    args.load_ckpt_name = "../../checkpoint/{}-{}-best.pt".format(EVALUATOR_TYPE, SELECT_DATA)
     if args.evaluator_type == 'graphsage':
-        args.load_ckpt_name = "/home/v-jingyao/projects/NeighborSelection-Final/checkpoint/graphsage-{}-{}-best.pt".format(AGG, SELECT_DATA)
+        args.load_ckpt_name = "../../checkpoint/graphsage-{}-{}-best.pt".format(AGG, SELECT_DATA)
         args.evaluator_type = 'graphsage_{}'.format(AGG)
         args.savename = 'selector-{}-{}-{}-onestep-{}'.format(SELECT_DATA, EVALUATOR_TYPE, AGG, SELECTOR_TASK)
     

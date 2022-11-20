@@ -1,4 +1,5 @@
 import os
+import sys
 import copy
 import json
 import time
@@ -17,6 +18,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 
 from transformers import BertTokenizerFast, RobertaTokenizerFast
 
+sys.path.append(os.path.abspath(os.path.join(__file__, "..", "..")))
 import utils
 from models.Selector_Evaluator import Evaluator
 from models.configuration_tnlrv3 import TuringNLRv3Config

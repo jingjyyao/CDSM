@@ -1,4 +1,5 @@
 import os
+import sys
 import copy
 import time
 import logging
@@ -10,6 +11,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 
 from transformers import BertTokenizerFast
 
+sys.path.append(os.path.abspath(os.path.join(__file__, "..", "..")))
 import utils
 from models.GAT_modeling import GraphSageForNeighborPredict
 from models.configuration_tnlrv3 import TuringNLRv3Config

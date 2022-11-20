@@ -7,7 +7,7 @@ SELECT_DATA="dblp"
 NEIGHBOR_NUM=5
 SELECT_NUM=5
 AGG='mean'
-MODE='test'
+MODE='train'
 
 if __name__ == "__main__":
     os.environ['MASTER_ADDR'] = 'localhost'
@@ -15,12 +15,10 @@ if __name__ == "__main__":
     args = parse_args()
     cont = False
     if SELECT_DATA=="dblp":
-        args.train_data_path = '/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_twoorder_neighbors/train.tsv'
-        args.valid_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_twoorder_neighbors/valid.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_graph_data/test.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_oneorder_neighbors/test.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_twoorder_neighbors/test_50.tsv'
-        args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/dblp_twoorder_neighbors/test_popularity.tsv'
+        args.train_data_path = '../../data/dblp_twoorder_neighbors/sample_train.tsv'
+        args.valid_data_path='../../data/dblp_twoorder_neighbors/valid.tsv'
+        # args.test_data_path='../../data/dblp_twoorder_neighbors/test_50.tsv'
+        args.test_data_path='../../data/dblp_twoorder_neighbors/test_popularity.tsv'
         args.block_size = 32
         args.schedule_step = (13000) * args.epochs
         args.save_steps = 10 ** 4
@@ -30,12 +28,11 @@ if __name__ == "__main__":
         args.valid_batch_size = 30
         args.test_batch_size = 30
     elif SELECT_DATA=="wiki":
-        args.train_data_path = '/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_without_overlap/local_train.tsv'
-        args.valid_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_without_overlap/valid.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_without_overlap/test.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_oneorder_neighbors/test.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_twoorder_neighbors/test_50.tsv'
-        args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/wikidata5m_oneorder_neighbors/test_popularity.tsv'
+        args.train_data_path = '../../data/wikidata5m_oneorder_neighbors/train.tsv'
+        args.valid_data_path='../../data/wikidata5m_oneorder_neighbors/valid.tsv'
+        args.test_data_path='../../data/wikidata5m_oneorder_neighbors/test.tsv'
+        # args.test_data_path='../../data/wikidata5m_twoorder_neighbors/test_50.tsv'
+        # args.test_data_path='../../data/wikidata5m_oneorder_neighbors/test_popularity.tsv'
         args.block_size = 64
         args.schedule_step = (17000) * args.epochs
         args.save_steps = 10 ** 4
@@ -45,11 +42,11 @@ if __name__ == "__main__":
         args.valid_batch_size = 30
         args.test_batch_size = 30
     elif SELECT_DATA=="product":
-        args.train_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/product_oneorder_neighbors/TrainData_5_shuf.tsv'
-        args.valid_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/product_oneorder_neighbors/ValidData_5_shuf.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/product_oneorder_neighbors/TestData_50_shuf.tsv'
-        # args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/product_oneorder_neighbors/TestData_5_shuf.tsv'
-        args.test_data_path='/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/product_oneorder_neighbors/TestData_popularity.tsv'
+        args.train_data_path='../../data/product_oneorder_neighbors/TrainData_5_shuf.tsv'
+        args.valid_data_path='../../data/product_oneorder_neighbors/ValidData_5_shuf.tsv'
+        # args.test_data_path='../../data/product_oneorder_neighbors/TestData_50_shuf.tsv'
+        # args.test_data_path='../../data/product_oneorder_neighbors/TestData_5_shuf.tsv'
+        args.test_data_path='../../data/product_oneorder_neighbors/TestData_popularity.tsv'
         args.block_size = 32
         args.schedule_step = (10**5) * args.epochs
         args.save_steps = 5*10 ** 4
@@ -59,8 +56,8 @@ if __name__ == "__main__":
         args.valid_batch_size = 30
         args.test_batch_size = 30
 
-    # args.model_dir='./model'
-    # args.enable_gpu=True
+    args.model_dir='../../checkpoint'
+    args.enable_gpu=True
 
     args.warmup_lr=False
     args.savename='gat'
@@ -73,8 +70,8 @@ if __name__ == "__main__":
     args.return_last_station_emb=False
     args.mapping_graph=False
     args.model_type='gat'
-    args.model_name_or_path="/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/Turing/base-uncased.bin"
-    args.config_name="/home/v-jingyao/projects/NeighborSelection/TopoGramFiles/Turing/unilm2-base-uncased-config.json"
+    args.model_name_or_path="../../data/Turing/base-uncased.bin"
+    args.config_name="../../data/Turing/unilm2-base-uncased-config.json"
     args.pretrain_lr=1e-5
     args.fp16=True
     args.neighbor_mask=False
@@ -102,7 +99,7 @@ if __name__ == "__main__":
 
     if 'test' in args.mode:
         print('-------------test--------------')
-        args.load_ckpt_name="/home/v-jingyao/projects/NeighborSelection-Final/checkpoint/gat-{}-best.pt".format(SELECT_DATA)
+        args.load_ckpt_name="../../checkpoint/gat-{}-best.pt".format(SELECT_DATA)
         if args.world_size > 1:
             mp.freeze_support()
             mgr = mp.Manager()
