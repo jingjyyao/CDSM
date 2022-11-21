@@ -49,7 +49,7 @@ def parse_args():
 
     # model configuration
     parser.add_argument("--num_hidden_layers", type=int, default=6)
-    parser.add_argument("--hidden_size", type=int, default=384)
+    parser.add_argument("--hidden_size", type=int, default=768)
     parser.add_argument("--condition", type=str,default="key",
                         choices=['key', 'key_neighbor', 'query_key_neighbor'])
     parser.add_argument("--select", type=str, default=None, choices=['random', 'counterpart'])

@@ -1,1 +1,1 @@
-Download the data from xxx and put them under this directory.
+Download the data from xxx and put all of them under this directory.

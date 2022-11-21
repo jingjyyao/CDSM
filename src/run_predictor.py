@@ -25,12 +25,13 @@ from data_handler import DatasetForMatching, DataCollatorForMatching, \
     SingleProcessDataLoader, MultiProcessDataLoader
 
 def load_bert(args):
-    # config = TuringNLRv3Config.from_pretrained(args.config_name if args.config_name else args.model_name_or_path, output_hidden_states=True, num_hidden_layers=args.num_hidden_layers, hidden_size=args.hidden_size)
-    config = RobertaConfig.from_pretrained(args.config_name if args.config_name else "roberta-base", num_hidden_layers=args.num_hidden_layers, hidden_size=args.hidden_size, output_hidden_states=True)
+    config = TuringNLRv3Config.from_pretrained(args.config_name if args.config_name else args.model_name_or_path, output_hidden_states=True, num_hidden_layers=args.num_hidden_layers, hidden_size=args.hidden_size)
+    # config = RobertaConfig.from_pretrained(args.config_name if args.config_name else "roberta-base", num_hidden_layers=args.num_hidden_layers, hidden_size=args.hidden_size, output_hidden_states=True)
+    # print("config: ", config)
     config.neighbor_type = 0
     config.mapping_graph = 0
     config.graph_transform = 0
-    model = SelectorPredictor(config, args, selector_ckpt=args.selector_ckpt, predictor_ckpt=args.predictor_ckpt, predictor_type=args.predictor_type)
+    model = SelectorPredictor(config, selector_ckpt=args.selector_ckpt, predictor_ckpt=args.predictor_ckpt, predictor_type=args.predictor_type)
     return model
 
 def predict(local_rank, args, global_prefetch_step, end, mode='test'):
@@ -57,11 +58,11 @@ def predict(local_rank, args, global_prefetch_step, end, mode='test'):
     tokenizer = RobertaTokenizerFast.from_pretrained("roberta-base")
     data_collator = DataCollatorForMatching(tokenizer=tokenizer, mlm=args.mlm_loss, neighbor_num=args.neighbor_num, neighbor_mask=args.neighbor_mask, block_size=args.block_size)
     if mode == 'train':
-        dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.train_data_path, total_neighbor_num=args.total_neighbor_num)
+        dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.train_data_path, neighbor_num=args.neighbor_num)
     elif mode == 'valid':
-        dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.valid_data_path, total_neighbor_num=args.total_neighbor_num)
+        dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.valid_data_path, neighbor_num=args.neighbor_num)
     else:
-        dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.test_data_path, total_neighbor_num=args.total_neighbor_num)
+        dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.test_data_path, neighbor_num=args.neighbor_num)
 
     end.value = False
     dataloader = MultiProcessDataLoader(dataset, batch_size=args.test_batch_size,collate_fn=data_collator, local_rank=local_rank, world_size=args.world_size, global_end=end)
@@ -125,11 +126,11 @@ def predict_single_process(args, mode):
         data_collator = DataCollatorForMatching(tokenizer=tokenizer, mlm=args.mlm_loss, neighbor_num=args.neighbor_num,neighbor_mask=args.neighbor_mask, block_size=args.block_size)
 
         if mode == 'train':
-            dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.train_data_path, total_neighbor_num=args.total_neighbor_num)
+            dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.train_data_path, neighbor_num=args.neighbor_num)
         elif mode == 'valid':
-            dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.valid_data_path, total_neighbor_num=args.total_neighbor_num)
+            dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.valid_data_path, neighbor_num=args.neighbor_num)
         else:
-            dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.test_data_path, total_neighbor_num=args.total_neighbor_num)
+            dataset = DatasetForMatching(tokenizer=tokenizer, file_path=args.test_data_path, neighbor_num=args.neighbor_num)
 
         dataloader = SingleProcessDataLoader(dataset, batch_size=args.test_batch_size, collate_fn=data_collator)
 

@@ -3,11 +3,11 @@ from pathlib import Path
 from parameters import parse_args
 import torch.multiprocessing as mp
 
-SELECT_DATA="dblp"
+SELECT_DATA="product"
 NEIGHBOR_NUM=5
 SELECT_NUM=5
 AGG='mean'
-MODE='test'
+MODE='train'
 
 if __name__ == "__main__":
     os.environ['MASTER_ADDR'] = 'localhost'
@@ -28,7 +28,7 @@ if __name__ == "__main__":
         args.valid_batch_size = 30
         args.test_batch_size = 30
     elif SELECT_DATA=="wiki":
-        args.train_data_path = '../../data/wikidata5m_oneorder_neighbors/train.tsv'
+        args.train_data_path = '../../data/wikidata5m_oneorder_neighbors/sample_train.tsv'
         args.valid_data_path='../../data/wikidata5m_oneorder_neighbors/valid.tsv'
         args.test_data_path='../../data/wikidata5m_oneorder_neighbors/test.tsv'
         # args.test_data_path='../../data/wikidata5m_twoorder_neighbors/test_50.tsv'
@@ -42,7 +42,8 @@ if __name__ == "__main__":
         args.valid_batch_size = 30
         args.test_batch_size = 30
     elif SELECT_DATA=="product":
-        args.train_data_path='../../data/product_oneorder_neighbors/TrainData_5_shuf.tsv'
+        args.train_data_path='../../data/product_oneorder_neighbors/sample_train.tsv'
+        # args.train_data_path='../../data/product_oneorder_neighbors/TrainData_5_shuf.tsv'
         args.valid_data_path='../../data/product_oneorder_neighbors/ValidData_5_shuf.tsv'
         # args.test_data_path='../../data/product_oneorder_neighbors/TestData_50_shuf.tsv'
         # args.test_data_path='../../data/product_oneorder_neighbors/TestData_5_shuf.tsv'

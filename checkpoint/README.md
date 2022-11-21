@@ -1,1 +1,1 @@
-Download the checkpoint from xxx and put them under this directory.
+Download the checkpoint from xxx and put all of them under this directory.

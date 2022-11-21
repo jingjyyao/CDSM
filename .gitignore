@@ -1,2 +1,5 @@
-checkpoint_local
-data_local
+checkpoint
+data
+upload
+data.tar.gz
+**__pycache__**

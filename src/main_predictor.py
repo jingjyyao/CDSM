@@ -10,10 +10,10 @@ if __name__ == "__main__":
     os.environ['MASTER_PORT'] = '12360'
     args = parse_args()
     if SELECT_DATA=="dblp":
-        args.train_data_path = '../../data/dblp_twoorder_neighbors/sample_train.tsv'
-        args.valid_data_path='../../data/dblp_twoorder_neighbors/valid.tsv'
-        args.test_data_path='../../data/dblp_twoorder_neighbors/test.tsv'
-        # args.test_data_path='../../data/dblp_twoorder_neighbors/test_50.tsv'
+        args.train_data_path = '../data/dblp_twoorder_neighbors/sample_train.tsv'
+        args.valid_data_path='../data/dblp_twoorder_neighbors/valid.tsv'
+        args.test_data_path='../data/dblp_twoorder_neighbors/test.tsv'
+        # args.test_data_path='../data/dblp_twoorder_neighbors/test_50.tsv'
         args.block_size = 32
         args.schedule_step = (15000) * args.epochs
         args.save_steps = 10 ** 4
@@ -23,10 +23,10 @@ if __name__ == "__main__":
         args.valid_batch_size = 60
         args.test_batch_size = 60
     elif SELECT_DATA=="wiki":
-        args.train_data_path = '../../data/wikidata5m_without_overlap/train.tsv'
+        args.train_data_path = '../data/wikidata5m_without_overlap/train.tsv'
         args.valid_data_path='/home/jingyao/projects/CDSM/NeighborSelectionTopoGramFiles/wikidata5m_without_overlap/valid.tsv'
-        args.test_data_path='../../data/wikidata5m_without_overlap/test.tsv'
-        # args.test_data_path='../../data/wikidata5m_twoorder_neighbors/test_50.tsv'
+        args.test_data_path='../data/wikidata5m_without_overlap/test.tsv'
+        # args.test_data_path='../data/wikidata5m_twoorder_neighbors/test_50.tsv'
         args.block_size = 64
         args.schedule_step = (30000) * args.epochs
         args.save_steps = 10 ** 4
@@ -36,9 +36,9 @@ if __name__ == "__main__":
         args.valid_batch_size = 60
         args.test_batch_size = 60
     elif SELECT_DATA=="product":
-        args.train_data_path='../../data/product_oneorder_neighbors/sample_Train_shuf.tsv'
-        args.valid_data_path='../../data/product_oneorder_neighbors/Valid_shuf.tsv'
-        args.test_data_path='.../../data/product_oneorder_neighbors/Test_shuf.tsv'
+        args.train_data_path='../data/product_oneorder_neighbors/sample_Train_shuf.tsv'
+        args.valid_data_path='../data/product_oneorder_neighbors/Valid_shuf.tsv'
+        args.test_data_path='.../data/product_oneorder_neighbors/Test_shuf.tsv'
         args.block_size = 32
         args.schedule_step = (30000) * args.epochs
         args.save_steps = 5*10 ** 4
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         args.valid_batch_size = 300
         args.test_batch_size = 300
 
-    args.model_dir='../../checkpoint'
+    args.model_dir='../checkpoint'
     args.enable_gpu=True
 
     args.warmup_lr=True
@@ -62,8 +62,8 @@ if __name__ == "__main__":
     args.return_last_station_emb=False
     args.mapping_graph=False
     args.model_type='predictor'
-    args.model_name_or_path="../../data/Turing/roberta-base.bin"
-    args.config_name="../../data/Turing/roberta-base-config.json"
+    args.model_name_or_path="../data/Turing/base-uncased.bin"
+    args.config_name="../data/Turing/unilm2-base-uncased-config.json"
     args.pretrain_lr=1e-5
     args.fp16=True
     args.neighbor_mask=False
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     args.basic='roberta'
     args.select='counterpart'
     args.aggregation='max'
-    args.predictor_type='counterpart'
+    args.predictor_type='gat'
     args.selector_task='similarity'
     args.select_num=10
     args.count_threshold = None
