@@ -13,9 +13,9 @@ For deep semantic matching on textual graphs, we empirically find that the neigh
 + transformers 4.2.1
 
 ## Quick Usage
-1. Download the processed data from xxx and put them into the data folder.
+1. Download the processed data from (https://pan.baidu.com/s/1Qwa1Uo7eMFsZwtOWLb_Aow  passwd: 6tu5) and put them into the data folder.
 
-2. Download the pretrained checkpoint from xxx and put them into the checkpoint folder.
+2. Download the pretrained checkpoint from (https://pan.baidu.com/s/1kRYsSH_3QP6WKPrXjRXOnw  passwd: 7w0q) and put them into the checkpoint folder.
 
 3. Evaluate the model result, all running arguments are set in the main_xxx.py script.
 ```

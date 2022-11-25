@@ -1,1 +1,1 @@
-Download the checkpoint from xxx and put all of them under this directory.
+Download the checkpoint from (https://pan.baidu.com/s/1kRYsSH_3QP6WKPrXjRXOnw  passwd: 7w0q) and put all of them under this directory.
