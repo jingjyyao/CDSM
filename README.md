@@ -51,3 +51,18 @@ python main_predictor.py
 ```
 
 ## Citation
+```
+@article{10.1145/3573204,
+author = {Yao, Jing and Liu, Zheng and Yang, Junhan and Dou, Zhicheng and Xie, Xing and Wen, Ji-Rong},
+title = {CDSM: Cascaded Deep Semantic Matching on Textual Graphs Leveraging Ad-Hoc Neighbor Selection},
+year = {2022},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+issn = {2157-6904},
+url = {https://doi.org/10.1145/3573204},
+doi = {10.1145/3573204},
+note = {Just Accepted},
+journal = {ACM Trans. Intell. Syst. Technol.},
+month = {dec},
+}
+```
